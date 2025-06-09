@@ -30,6 +30,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^1.1.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  crypto: ^3.0.2
+  flutter_secure_storage: ^9.0.0
+  flutter_local_notifications: ^18.0.1
+  sensors_plus: ^6.1.1
+  intl: any
+  timezone: ^0.10.1
+  shared_preferences: ^2.2.3
+  provider: ^6.1.2
+  geolocator: ^14.0.1
+  google_maps_flutter: ^2.5.0
+  permission_handler: ^12.0.0+1
+
+
+
+
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -39,18 +58,26 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
+
+#dependency_overrides:
+ # permission_handler_android: ^10.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/images/profile.jpg
+
+  
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

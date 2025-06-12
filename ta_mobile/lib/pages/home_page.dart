@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ta_mobile/pages/antrian_pasien.dart';
-import 'package:ta_mobile/pages/data_dokter_page.dart';
+//import 'package:ta_mobile/pages/data_dokter_page.dart';
 import 'package:ta_mobile/pages/conversion_page.dart';
 import 'package:ta_mobile/pages/conversion_time_page.dart';
+import 'package:ta_mobile/pages/lbs_page.dart';
 import 'package:ta_mobile/pages/profil_page.dart';
 import 'package:ta_mobile/pages/saran_kesan_page.dart';
 import 'package:ta_mobile/pages/sensor_page.dart';
@@ -47,7 +48,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[200],
-        title: const Text("Beranda", style: TextStyle(color: Colors.black87)),
+        title: const Text(
+          "MentalCare",
+          style: TextStyle(color: Colors.black87),
+        ),
         iconTheme: const IconThemeData(color: Colors.black),
         actions: [
           IconButton(icon: const Icon(Icons.logout), onPressed: logout),
@@ -168,27 +172,21 @@ class _HomeContentState extends State<HomeContent> {
           ),
           buildMenuButton(
             context,
-            icon: Icons.access_time,
-            label: "Konversi Waktu",
-            page: const MedicineReminderPage(),
-          ),
-          buildMenuButton(
-            context,
             icon: Icons.sensors,
             label: "Sensor",
             page: SensorPage(),
           ),
           buildMenuButton(
             context,
-            icon: Icons.search,
-            label: "Pencarian Dokter",
-            page: DataDokterPage(),
-          ),
-          buildMenuButton(
-            context,
             icon: Icons.people_alt,
             label: "Lihat Antrian Pasien",
             page: AntrianPasienPage(),
+          ),
+          buildMenuButton(
+            context,
+            icon: Icons.map,
+            label: "Lihat Lokasi RS",
+            page: LbsPage(),
           ),
           const SizedBox(height: 30),
           Card(
@@ -199,14 +197,8 @@ class _HomeContentState extends State<HomeContent> {
             elevation: 3,
             shadowColor: Colors.grey[300],
             child: ListTile(
-              leading: const Icon(
-                Icons.notifications_active,
-                color: Colors.black54,
-              ),
-              title: const Text(
-                "Pengingat Minum Obat!",
-                style: TextStyle(color: Colors.black87),
-              ),
+              leading: const Icon(Icons.medical_services),
+              title: const Text("Pengingat Minum Obat"),
               subtitle: Text(
                 jadwalObat != null && jadwalObat!.isNotEmpty
                     ? "Setiap hari jam $jadwalObat WIB"
@@ -218,7 +210,16 @@ class _HomeContentState extends State<HomeContent> {
                           : Colors.grey[600],
                 ),
               ),
-              trailing: const Icon(Icons.alarm, color: Colors.black45),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () {
+                // Navigasi ke halaman atur jadwal
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const MedicineReminderPage(),
+                  ),
+                ).then((_) => _loadJadwalObat()); // refresh setelah kembali
+              },
             ),
           ),
         ],

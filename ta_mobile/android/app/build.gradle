@@ -7,13 +7,13 @@ plugins {
 
 android {
     namespace = "com.example.ta_mobile"
-    compileSdk = flutter.compileSdkVersion
+    compileSdkVersion 35
     ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-	isCoreLibraryDesugaringEnabled = true
+	    coreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -22,8 +22,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.ta_mobile"
-        minSdk = 21  // set langsung minimal 21
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 23  // set langsung minimal 21
+        targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }

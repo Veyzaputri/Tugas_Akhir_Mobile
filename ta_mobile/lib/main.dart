@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ta_mobile/pages/conversion_time_page.dart';
 import 'package:ta_mobile/pages/home_page.dart';
 import 'package:ta_mobile/pages/login_pages.dart';
+import 'package:ta_mobile/pages/notif_test_page.dart';
 import 'package:ta_mobile/pages/register_pages.dart';
 import 'package:ta_mobile/provider/auth_provider.dart';
 
 void main() {
+  NotificationController.initializeLocalNotifications();
   runApp(const MentalCareApp());
 }
 
 class MentalCareApp extends StatelessWidget {
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
   const MentalCareApp({super.key});
 
   @override
@@ -18,6 +23,7 @@ class MentalCareApp extends StatelessWidget {
       create: (_) => AuthProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        navigatorKey: navigatorKey,
         title: 'MentalCare+',
         theme: ThemeData(
           brightness: Brightness.light,
@@ -75,6 +81,7 @@ class MentalCareApp extends StatelessWidget {
           '/': (_) => const LoginScreen(),
           '/register': (_) => const RegisterScreen(),
           '/home': (_) => const HomePage(),
+          '/notification-page': (context) => MedicineReminderPage(),
         },
       ),
     );
